@@ -172,6 +172,7 @@ function sendMessage(message) {
         alert("信息不能为空~");
         return;
     }
+    debugger
     let object = {};
     object.code = 1002;
     object.nick = myNick;
