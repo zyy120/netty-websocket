@@ -40,7 +40,7 @@
                              targetPackage="com.howie.mapper"
                              targetProject="D:\code\workspace-idea-netty\chatroom-master\src\main\java">
             <property name="enableSubPackages" value="true"/>
-            <property name="rootInterface" value="com.qs.common.base.basemapper.IBaseMapper"/>
+            <property name="rootInterface" value="com.howie.basemapper.IBaseMapper"/>
         </javaClientGenerator>
 
         <table  tableName="t_user" domainObjectName="TUser" enableCountByExample="false"

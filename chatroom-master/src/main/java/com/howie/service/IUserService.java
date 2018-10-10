@@ -1,11 +1,9 @@
-package com.howie.mapper;
+package com.howie.service;
 
-import com.howie.basemapper.IBaseMapper;
 import com.howie.model.TUser;
-import org.apache.ibatis.annotations.Mapper;
 
-@Mapper
-public interface TUserMapper extends IBaseMapper {
+public interface IUserService {
+
     int deleteByPrimaryKey(Integer userId);
 
     int insert(TUser record);

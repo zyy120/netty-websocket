@@ -1,6 +1,8 @@
 package com.howie.model;
 
-public class TUser {
+import java.io.Serializable;
+
+public class TUser implements Serializable {
     private Integer userId;
 
     private String userName;
