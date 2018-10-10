@@ -2,6 +2,7 @@ package com.howie.handler;
 
 import com.alibaba.fastjson.JSONObject;
 import com.howie.config.NettyConfig;
+import com.howie.constant.CommonConstan;
 import com.howie.constant.WebSocketConstant;
 import com.howie.model.User;
 import com.howie.service.MessageService;
@@ -14,6 +15,8 @@ import io.netty.handler.codec.http.FullHttpRequest;
 import io.netty.handler.codec.http.HttpResponseStatus;
 import io.netty.handler.codec.http.HttpVersion;
 import io.netty.handler.codec.http.websocketx.*;
+import io.netty.handler.timeout.IdleState;
+import io.netty.handler.timeout.IdleStateEvent;
 import io.netty.util.CharsetUtil;
 
 import java.util.Objects;
@@ -21,7 +24,16 @@ import java.util.UUID;
 
 import static com.howie.constant.MessageCodeConstant.*;
 
+/*
+为什么在这里使用的是SimpleChannelInboundHandler而不使用ChannelInboundHandlerAdapter？
+    主要原因是ChannelInboundHandlerAdapter在处理完消息后需要负责释放资源。
+    在这里将调用ByteBuf.release()来释放资源。SimpleChannelInboundHandler会在完成channelRead0后释放消息，
+    这是通过Netty处理所有消息的ChannelHandler实现了ReferenceCounted接口达到的。
 
+为什么在服务器中不使用SimpleChannelInboundHandler呢？
+    因为服务器要返回相同的消息给客户端，在服务器执行完成写操作之前不能释放调用读取到的消息，因为写操作是异步的
+    ，一旦写操作完成后，Netty中会自动释放消息。
+ */
 /**
  * Created with IntelliJ IDEA
  *
@@ -230,6 +242,31 @@ public class WebSocketHandler extends SimpleChannelInboundHandler<Object> {
                 ChannelFutureListener.CLOSE 源码：future.channel().close();
              */
             channelFuture.addListener(ChannelFutureListener.CLOSE);
+        }
+    }
+
+    /**
+     * @param
+     * @Description: 方法说明  超时处理 如果5秒没有接受到客服端的心跳，
+     * 就触发 如果超过两次则直接关闭
+     *
+     * @Author: zyy
+     * @date: 2018/9/14 15:44
+     */
+    @Override
+    public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
+        if (evt instanceof IdleStateEvent) {
+            IdleStateEvent event=(IdleStateEvent)evt;
+            if (IdleState.READER_IDLE.equals(event.state())) { //如果读通道处于空闲状态，说明没有接收到心跳命令
+                System.out.println("已经5秒没有接收到客户端的信息了");
+               // if(CommonConstan.NettyCommonParam.MAX_FREE_COUNT >1){
+                    System.out.println("关闭这个不活跃的channel");
+                    ctx.channel().close();
+               // }
+            }
+
+        } else {
+            super.userEventTriggered(ctx, evt);
         }
     }
 }

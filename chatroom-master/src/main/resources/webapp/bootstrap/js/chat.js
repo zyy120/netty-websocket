@@ -72,7 +72,8 @@ function websocket() {
         window.WebSocket = window.MozWebSocket;
     }
     if (window.WebSocket) {
-        socket = new WebSocket(webSocketUrl);
+        socket = new WebSocket(webSocketUrl); //普通websocket
+        //socket= new ReconnectingWebSocket(webSocketUrl, null, {debug: true, reconnectInterval: 3000});//带重试链接机制
         socket.onmessage = function (event) {
             let data = JSON.parse(event.data);
             switch (data.code) {
@@ -188,6 +189,7 @@ function send(message) {
     if (socket.readyState === WebSocket.OPEN) {
         socket.send(message);
     } else {
+        console.log("WebSocket连接没有建立成功！！")
         alert("WebSocket连接没有建立成功！！");
     }
 }

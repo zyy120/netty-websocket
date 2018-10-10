@@ -72,4 +72,5 @@ public class MessageCodeConstant {
      * 获取个人信息的系统信息
      */
     public static final int PERSONAL_SYSTEM_MESSGAE_CODE = 3003;
+
 }

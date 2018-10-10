@@ -5,6 +5,9 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.codec.http.HttpServerCodec;
 import io.netty.handler.stream.ChunkedWriteHandler;
+import io.netty.handler.timeout.IdleStateHandler;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created with IntelliJ IDEA
@@ -17,6 +20,9 @@ import io.netty.handler.stream.ChunkedWriteHandler;
 public class WebSocketChannelHandler extends ChannelInitializer<SocketChannel> {
     @Override
     protected void initChannel(SocketChannel socketChannel) throws Exception {
+
+        //设置空闲时间5秒
+        //socketChannel.pipeline().addLast(new IdleStateHandler(5,0,0,TimeUnit.SECONDS));
         //请求解码器
         socketChannel.pipeline().addLast("http-codec", new HttpServerCodec());
         //将多个消息转换成单一的消息对象
