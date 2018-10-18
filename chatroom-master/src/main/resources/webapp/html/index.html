@@ -12,15 +12,19 @@
     <div class="panel-heading" style="height: 50px">
         <h3 class="panel-title">欢迎来到聊天室</h3>
     </div>
-    <div class="panel-body" style="height: 200px">
+    <div class=" panel-body" style="height: 400px;">
         <form onsubmit="return goToChat(message.value)">
-            <div class="input-group" style="margin-top: 30px">
-                <span class="input-group-btn">
-                    <button class="btn btn-default" type="submit">
-                        登陆
-                    </button>
-                </span>
+            <div class="col-sm-8" style="margin-top: 30px; ">
+                   用户名 : <input type="text" class="form-control" name="message" title="login">
+            </div>
+            <div class="col-sm-8" style="margin-top: 30px ; ">
+                   密码:
                 <input type="text" class="form-control" name="message" title="login">
+            </div>
+            <div class="col-sm-8" style="margin-top: 30px">
+                <button class="btn btn-default" type="submit">
+                    登陆
+                </button>
             </div>
         </form>
     </div>
