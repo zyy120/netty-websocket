@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<!-- 跟元素是mapper,属性namespace的值是mapper接口的全名 -->
+<mapper namespace="com.spring.zyy.dao.IUserDao">
+
+	<!-- 自定义返回结果集 -->
+	<resultMap id="userMap" type="com.spring.zyy.pojo.User">
+		<id property="id" column="id" javaType="java.lang.Integer"></id>
+		<result property="userName" column="user_name" javaType="java.lang.String"></result>
+		<result property="pwd" column="password" javaType="java.lang.String"></result>
+		<result property="age" column="age" javaType="java.lang.Integer"></result>
+	</resultMap>
+
+	<select id="findByAll" parameterType="java.lang.Integer"
+		resultMap="userMap">
+		select * from user_t
+		<where>
+			<if test="id != null">id= #{id,jdbcType=INTEGER}</if>
+		</where>
+	</select>
+</mapper>
+ 
