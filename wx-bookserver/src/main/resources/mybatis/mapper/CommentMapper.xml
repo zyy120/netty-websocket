@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zyy.wxbookserver.mapper.CommentMapper" >
+  <resultMap id="BaseResultMap" type="com.zyy.wxbookserver.model.Comment" >
+    <id column="cmid" property="cmid" jdbcType="INTEGER" />
+    <result column="uid" property="uid" jdbcType="VARCHAR" />
+    <result column="uname" property="uname" jdbcType="VARCHAR" />
+    <result column="ccontent" property="ccontent" jdbcType="VARCHAR" />
+    <result column="bkname" property="bkname" jdbcType="VARCHAR" />
+    <result column="bkid" property="bkid" jdbcType="INTEGER" />
+    <result column="uavatar" property="uavatar" jdbcType="VARCHAR" />
+    <result column="ctime" property="ctime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    cmid, uid, uname, ccontent, bkname, bkid, uavatar, ctime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from comment
+    where cmid = #{cmid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from comment
+    where cmid = #{cmid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zyy.wxbookserver.model.Comment" >
+    insert into comment (cmid, uid, uname, 
+      ccontent, bkname, bkid, 
+      uavatar, ctime)
+    values (#{cmid,jdbcType=INTEGER}, #{uid,jdbcType=VARCHAR}, #{uname,jdbcType=VARCHAR}, 
+      #{ccontent,jdbcType=VARCHAR}, #{bkname,jdbcType=VARCHAR}, #{bkid,jdbcType=INTEGER}, 
+      #{uavatar,jdbcType=VARCHAR}, #{ctime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zyy.wxbookserver.model.Comment" >
+    insert into comment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cmid != null" >
+        cmid,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="uname != null" >
+        uname,
+      </if>
+      <if test="ccontent != null" >
+        ccontent,
+      </if>
+      <if test="bkname != null" >
+        bkname,
+      </if>
+      <if test="bkid != null" >
+        bkid,
+      </if>
+      <if test="uavatar != null" >
+        uavatar,
+      </if>
+      <if test="ctime != null" >
+        ctime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cmid != null" >
+        #{cmid,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="uname != null" >
+        #{uname,jdbcType=VARCHAR},
+      </if>
+      <if test="ccontent != null" >
+        #{ccontent,jdbcType=VARCHAR},
+      </if>
+      <if test="bkname != null" >
+        #{bkname,jdbcType=VARCHAR},
+      </if>
+      <if test="bkid != null" >
+        #{bkid,jdbcType=INTEGER},
+      </if>
+      <if test="uavatar != null" >
+        #{uavatar,jdbcType=VARCHAR},
+      </if>
+      <if test="ctime != null" >
+        #{ctime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zyy.wxbookserver.model.Comment" >
+    update comment
+    <set >
+      <if test="uid != null" >
+        uid = #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="uname != null" >
+        uname = #{uname,jdbcType=VARCHAR},
+      </if>
+      <if test="ccontent != null" >
+        ccontent = #{ccontent,jdbcType=VARCHAR},
+      </if>
+      <if test="bkname != null" >
+        bkname = #{bkname,jdbcType=VARCHAR},
+      </if>
+      <if test="bkid != null" >
+        bkid = #{bkid,jdbcType=INTEGER},
+      </if>
+      <if test="uavatar != null" >
+        uavatar = #{uavatar,jdbcType=VARCHAR},
+      </if>
+      <if test="ctime != null" >
+        ctime = #{ctime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where cmid = #{cmid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zyy.wxbookserver.model.Comment" >
+    update comment
+    set uid = #{uid,jdbcType=VARCHAR},
+      uname = #{uname,jdbcType=VARCHAR},
+      ccontent = #{ccontent,jdbcType=VARCHAR},
+      bkname = #{bkname,jdbcType=VARCHAR},
+      bkid = #{bkid,jdbcType=INTEGER},
+      uavatar = #{uavatar,jdbcType=VARCHAR},
+      ctime = #{ctime,jdbcType=TIMESTAMP}
+    where cmid = #{cmid,jdbcType=INTEGER}
+  </update>
+</mapper>

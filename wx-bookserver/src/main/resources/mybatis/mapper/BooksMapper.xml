@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zyy.wxbookserver.mapper.BooksMapper" >
+  <resultMap id="BaseResultMap" type="com.zyy.wxbookserver.model.Books" >
+    <id column="bkid" property="bkid" jdbcType="INTEGER" />
+    <result column="bkclass" property="bkclass" jdbcType="INTEGER" />
+    <result column="bkname" property="bkname" jdbcType="VARCHAR" />
+    <result column="bkauthor" property="bkauthor" jdbcType="VARCHAR" />
+    <result column="bkpublisher" property="bkpublisher" jdbcType="VARCHAR" />
+    <result column="bkfile" property="bkfile" jdbcType="VARCHAR" />
+    <result column="bkcover" property="bkcover" jdbcType="VARCHAR" />
+    <result column="bkprice" property="bkprice" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    bkid, bkclass, bkname, bkauthor, bkpublisher, bkfile, bkcover, bkprice
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from books
+    where bkid = #{bkid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from books
+    where bkid = #{bkid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zyy.wxbookserver.model.Books" >
+    insert into books (bkid, bkclass, bkname, 
+      bkauthor, bkpublisher, bkfile, 
+      bkcover, bkprice)
+    values (#{bkid,jdbcType=INTEGER}, #{bkclass,jdbcType=INTEGER}, #{bkname,jdbcType=VARCHAR}, 
+      #{bkauthor,jdbcType=VARCHAR}, #{bkpublisher,jdbcType=VARCHAR}, #{bkfile,jdbcType=VARCHAR}, 
+      #{bkcover,jdbcType=VARCHAR}, #{bkprice,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zyy.wxbookserver.model.Books" >
+    insert into books
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="bkid != null" >
+        bkid,
+      </if>
+      <if test="bkclass != null" >
+        bkclass,
+      </if>
+      <if test="bkname != null" >
+        bkname,
+      </if>
+      <if test="bkauthor != null" >
+        bkauthor,
+      </if>
+      <if test="bkpublisher != null" >
+        bkpublisher,
+      </if>
+      <if test="bkfile != null" >
+        bkfile,
+      </if>
+      <if test="bkcover != null" >
+        bkcover,
+      </if>
+      <if test="bkprice != null" >
+        bkprice,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="bkid != null" >
+        #{bkid,jdbcType=INTEGER},
+      </if>
+      <if test="bkclass != null" >
+        #{bkclass,jdbcType=INTEGER},
+      </if>
+      <if test="bkname != null" >
+        #{bkname,jdbcType=VARCHAR},
+      </if>
+      <if test="bkauthor != null" >
+        #{bkauthor,jdbcType=VARCHAR},
+      </if>
+      <if test="bkpublisher != null" >
+        #{bkpublisher,jdbcType=VARCHAR},
+      </if>
+      <if test="bkfile != null" >
+        #{bkfile,jdbcType=VARCHAR},
+      </if>
+      <if test="bkcover != null" >
+        #{bkcover,jdbcType=VARCHAR},
+      </if>
+      <if test="bkprice != null" >
+        #{bkprice,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zyy.wxbookserver.model.Books" >
+    update books
+    <set >
+      <if test="bkclass != null" >
+        bkclass = #{bkclass,jdbcType=INTEGER},
+      </if>
+      <if test="bkname != null" >
+        bkname = #{bkname,jdbcType=VARCHAR},
+      </if>
+      <if test="bkauthor != null" >
+        bkauthor = #{bkauthor,jdbcType=VARCHAR},
+      </if>
+      <if test="bkpublisher != null" >
+        bkpublisher = #{bkpublisher,jdbcType=VARCHAR},
+      </if>
+      <if test="bkfile != null" >
+        bkfile = #{bkfile,jdbcType=VARCHAR},
+      </if>
+      <if test="bkcover != null" >
+        bkcover = #{bkcover,jdbcType=VARCHAR},
+      </if>
+      <if test="bkprice != null" >
+        bkprice = #{bkprice,jdbcType=INTEGER},
+      </if>
+    </set>
+    where bkid = #{bkid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zyy.wxbookserver.model.Books" >
+    update books
+    set bkclass = #{bkclass,jdbcType=INTEGER},
+      bkname = #{bkname,jdbcType=VARCHAR},
+      bkauthor = #{bkauthor,jdbcType=VARCHAR},
+      bkpublisher = #{bkpublisher,jdbcType=VARCHAR},
+      bkfile = #{bkfile,jdbcType=VARCHAR},
+      bkcover = #{bkcover,jdbcType=VARCHAR},
+      bkprice = #{bkprice,jdbcType=INTEGER}
+    where bkid = #{bkid,jdbcType=INTEGER}
+  </update>
+  <select id="getBookList"  resultMap="BaseResultMap" parameterType="map" >
+      select
+      <include refid="Base_Column_List" />
+      from books
+  </select>
+
+</mapper>
