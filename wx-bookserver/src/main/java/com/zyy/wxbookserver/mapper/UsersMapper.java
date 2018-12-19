@@ -18,4 +18,6 @@ public interface UsersMapper extends IBaseMapper {
     int updateByPrimaryKeySelective(Users record);
 
     int updateByPrimaryKey(Users record);
+
+    Users selectByUid(String uid);
 }

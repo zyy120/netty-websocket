@@ -15,4 +15,6 @@ public interface IUsersService {
     int updateByPrimaryKeySelective(Users record);
 
     int updateByPrimaryKey(Users record);
+
+    Users selectByUid(String uid);
 }

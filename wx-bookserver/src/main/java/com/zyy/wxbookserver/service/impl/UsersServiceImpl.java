@@ -40,4 +40,9 @@ public class UsersServiceImpl  implements IUsersService {
     public int updateByPrimaryKey(Users record) {
         return usersMapper.updateByPrimaryKey(record);
     }
+
+    @Override
+    public Users selectByUid(String uid) {
+        return usersMapper.selectByUid(uid);
+    }
 }
