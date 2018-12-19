@@ -19,6 +19,6 @@ public interface IBooksService {
 
     int updateByPrimaryKey(Books record);
 
-    List<Books> getBookList(Map<String,Object> param);
+    List<Map<String,Object>  > getBookList(Map<String,Object> param);
 }
 

@@ -19,12 +19,12 @@ public abstract class BaseController {
 	public Logger logger = LoggerFactory.getLogger(this.getClass());
 
 
-	public Map<String, Object> getReturnData(Object data,int resultFlag){
+	public Map<String, Object> getReturnData(Map<String, Object> data,int resultFlag){
 		Map<String, Object> parameters=new HashMap<String, Object>();
-		parameters.put("result",resultFlag);
+		data.put("result",resultFlag);
 		//列表展示数据
-		parameters.put("data", data);
-		return parameters;
+		//data.put("data", data);
+		return data;
 		
 	}
 

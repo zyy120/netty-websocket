@@ -125,9 +125,9 @@
       bkprice = #{bkprice,jdbcType=INTEGER}
     where bkid = #{bkid,jdbcType=INTEGER}
   </update>
-  <select id="getBookList"  resultMap="BaseResultMap" parameterType="map" >
+  <select id="getBookList"  resultType="map" parameterType="map" >
       select
-      <include refid="Base_Column_List" />
+      bkid book_id, bkclass category, bkname book_name, bkauthor author, bkpublisher book_publisher, bkfile file_url, bkcover cover_url, bkprice book_price
       from books
   </select>
 

@@ -113,7 +113,7 @@ public class LoginController extends BaseController {
             result.put("skey", skey);
             JSONObject userInfos = AesCbcUtil.decrypt(encryptedData, sessionKey, iv, "UTF-8");
             userInfos.put( "balance",users.getUbalance() );
-            result.put("userInfos", userInfos);
+            result.put("userInfo", userInfos);
             log.info(userInfos);
         }
      return  super.getReturnData(result, ApiConstants.Result.SUCCESS);

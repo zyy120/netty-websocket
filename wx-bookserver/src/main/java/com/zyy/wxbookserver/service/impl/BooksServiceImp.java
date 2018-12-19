@@ -45,7 +45,7 @@ public class BooksServiceImp implements IBooksService {
     }
 
     @Override
-    public List<Books> getBookList(Map<String, Object> param) {
+    public List<Map<String,Object>> getBookList(Map<String, Object> param) {
         return booksMapper.getBookList(param);
     }
 }
