@@ -27,6 +27,21 @@ public abstract class BaseController {
 		return data;
 		
 	}
+	public Map<String, Object> getReturnDatas(Map<String, Object> data,int resultFlag){
+		Map<String, Object> parameters=new HashMap<String, Object>();
+		parameters.put("result",resultFlag);
+		//列表展示数据
+		parameters.put("data", data);
+		return parameters;
 
-	
+	}
+
+	public Map<String, Object> getReturnError(int result,String errmsg){
+		Map<String, Object> parameters=new HashMap<String, Object>();
+		parameters.put("result",result);
+		//列表展示数据
+		parameters.put("errmsg", errmsg);
+		return parameters;
+
+	}
 }

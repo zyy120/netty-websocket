@@ -90,4 +90,26 @@
       bkid = #{bkid,jdbcType=INTEGER}
     where oid = #{oid,jdbcType=INTEGER}
   </update>
+
+  <select id="getOrderyBuyCount" parameterType="map" resultType="java.lang.Integer">
+    select count(*) as buyCount from orders left join users on users.uid=orders.uid where users.skey=#{skey} and orders.bkid=#{bkdi}
+  </select>
+
+  <select id="checkUserBuyBook" resultMap="BaseResultMap"  parameterType="com.zyy.wxbookserver.model.Orders">
+    SELECT * from orders
+    <where> 1=1
+      <if test="uid != null" >
+        and uid = #{uid,jdbcType=VARCHAR}
+      </if>
+      <if test="oprice != null" >
+        and oprice = #{oprice,jdbcType=INTEGER}
+      </if>
+      <if test="otime != null" >
+        otime = #{otime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="bkid != null" >
+        and bkid = #{bkid,jdbcType=INTEGER}
+      </if>
+    </where>
+  </select>
 </mapper>

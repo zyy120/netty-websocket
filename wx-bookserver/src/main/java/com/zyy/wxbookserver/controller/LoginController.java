@@ -94,7 +94,7 @@ public class LoginController extends BaseController {
             } else {//用户存在
                 u.setUavatar(jsonUser.getString("avatarUrl"));
                 u.setUpdateTime(new Date());
-                users.setSkey(skey);
+                u.setSkey(skey);
                 usersService.updateByPrimaryKeySelective(u);
             }
             String skey_redis = (String) redisTemplate.opsForValue().get( openid );
@@ -112,7 +112,7 @@ public class LoginController extends BaseController {
             //把新的sessionKey和oppenid返回给小程序
             result.put("skey", skey);
             JSONObject userInfos = AesCbcUtil.decrypt(encryptedData, sessionKey, iv, "UTF-8");
-            userInfos.put( "balance",users.getUbalance() );
+            userInfos.put( "balance",u.getUbalance() );
             result.put("userInfo", userInfos);
             log.info(userInfos);
         }

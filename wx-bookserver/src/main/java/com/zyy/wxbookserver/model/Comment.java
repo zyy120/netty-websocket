@@ -19,6 +19,16 @@ public class Comment {
 
     private Date ctime;
 
+    private String sCtime;
+
+    public String getsCtime() {
+        return sCtime;
+    }
+
+    public void setsCtime(String sCtime) {
+        this.sCtime = sCtime;
+    }
+
     public Integer getCmid() {
         return cmid;
     }

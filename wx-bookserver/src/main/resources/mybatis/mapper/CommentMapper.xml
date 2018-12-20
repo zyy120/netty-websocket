@@ -125,4 +125,7 @@
       ctime = #{ctime,jdbcType=TIMESTAMP}
     where cmid = #{cmid,jdbcType=INTEGER}
   </update>
+  <select id="getCommentList" parameterType="map" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> from comment where bkid=#{bkid} limit 0,10
+  </select>
 </mapper>

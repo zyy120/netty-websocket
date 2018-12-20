@@ -2,6 +2,9 @@ package com.zyy.wxbookserver.service;
 
 import com.zyy.wxbookserver.model.Comment;
 
+import java.util.List;
+import java.util.Map;
+
 public interface ICommentService {
     int deleteByPrimaryKey(Integer cmid);
 
@@ -14,4 +17,6 @@ public interface ICommentService {
     int updateByPrimaryKeySelective(Comment record);
 
     int updateByPrimaryKey(Comment record);
+
+    List<Comment> getCommentList(Map<String,Object> param);
 }

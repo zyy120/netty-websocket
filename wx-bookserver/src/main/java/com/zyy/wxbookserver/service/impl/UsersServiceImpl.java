@@ -6,6 +6,8 @@ import com.zyy.wxbookserver.service.IUsersService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class UsersServiceImpl  implements IUsersService {
@@ -44,5 +46,20 @@ public class UsersServiceImpl  implements IUsersService {
     @Override
     public Users selectByUid(String uid) {
         return usersMapper.selectByUid(uid);
+    }
+
+    @Override
+    public Users selectBySkey(String skey) {
+        return usersMapper.selectBySkey(skey);
+    }
+
+    /**
+     * @param skey@Description: 方法说明 获取用户购买的书籍
+     * @Author: zyy
+     * @date: 2018/12/20 16:10
+     */
+    @Override
+    public List<Map<String, Object>> getUserBuyBooks(String skey) {
+        return usersMapper.getUserBuyBooks(skey);
     }
 }

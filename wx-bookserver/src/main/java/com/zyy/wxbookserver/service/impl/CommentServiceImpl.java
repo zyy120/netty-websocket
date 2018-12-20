@@ -6,6 +6,8 @@ import com.zyy.wxbookserver.service.ICommentService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class CommentServiceImpl implements ICommentService {
@@ -39,5 +41,10 @@ public class CommentServiceImpl implements ICommentService {
     @Override
     public int updateByPrimaryKey(Comment record) {
         return commentMapper.updateByPrimaryKey(record);
+    }
+
+    @Override
+    public List<Comment> getCommentList(Map<String, Object> param) {
+        return commentMapper.getCommentList(param);
     }
 }
