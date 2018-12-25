@@ -67,7 +67,7 @@ public class BooksController extends BaseController {
         param.put("skey",skey);
         param.put("bkid",bookid);
         int byCount=ordersService.getOrderyBuyCount(param);
-
+//
         if(byCount == 1){
             data.put("is_buy",1);
         }else {
